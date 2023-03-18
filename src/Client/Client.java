@@ -9,10 +9,12 @@ import java.net.Socket;
 
 public class Client implements Runnable{
 	
+	private String host = "127.0.0.1";
 	private int port;
 	private String message;
 	
-	public Client(int port, String message) {
+	public Client(String host, int port, String message) {
+		this.host = host;
 		this.port = port;
 		this.message = message;
 	}
@@ -25,13 +27,7 @@ public class Client implements Runnable{
 		DataOutputStream out;
 		
 		try {
-			
-			/*final DatagramSocket socket = new DatagramSocket();
-			socket.connect(InetAddress.getByName("8.8.8.8"), 10002);
-			String host = socket.getLocalAddress().getHostAddress();
-			System.out.println(host);*/
 					
-			String host = "127.0.0.1";
 			Socket sc = new Socket(host, port);
 			//in = new DataInputStream(sc.getInputStream());
 			out = new DataOutputStream(sc.getOutputStream());

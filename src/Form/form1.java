@@ -1,6 +1,10 @@
 package Form;
 
 
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -78,11 +82,12 @@ public class form1 extends javax.swing.JFrame implements Observer {
         String mensaje = "1: " + this.txtTextoEnviar.getText() + "\n";
  
         this.txtTexto.append(mensaje);
- 
-        Client c = new Client(6000, mensaje);
+        
+        String host = "IP from DEST comp";
+		
+        Client c = new Client(host, 5000, mensaje);
         Thread t = new Thread(c);
         t.start();
- 
  
     }                                         
  

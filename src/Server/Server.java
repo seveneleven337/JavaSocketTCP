@@ -29,23 +29,25 @@ public class Server extends Observable implements Runnable {
 			server = new ServerSocket(port);
 			System.out.println("server running");
 			
+			
 			while(true) {
 				sc = server.accept();        // listening client socket
-				System.out.println("Client connected");
+				System.out.println("Client conected");
+				//System.out.println(sc.getInetAddress().toString());
 				in = new DataInputStream(sc.getInputStream());
 				//out = new DataOutputStream(sc.getOutputStream());
 				
 				
 				String message = in.readUTF(); 		//wait until client send info
 				System.out.println(message);
-				//out.writeUTF("message received in the server");
+				//out.writeUTF(sc.getInetAddress().toString());
 				
 				this.setChanged();
 				this.notifyObservers(message);
 				this.clearChanged();
 				
 				sc.close();
-				System.out.println("Client disconnected");
+				System.out.println("Client desconnected");
 			}
 			
 			
